@@ -127,3 +127,38 @@ def mapa_con_familia_soluciones():
     plt.grid(True)
     plt.legend()
     plt.show()
+
+def graficar_circuito_RC():
+    t = np.linspace(0, 10, 1000)
+    w = 1 / (500 * 0.0005)
+    k = 7
+    Vout = (14 / np.sqrt(1 + 0.0625 * w**2)) * np.sin(w * t - np.arctan(0.25 * w)) + k * np.exp(-4 * t)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(t, Vout, label='Voltaje de salida Vout(t)', color='purple')
+    plt.title("Solución de la EDO para el circuito RC")
+    plt.xlabel("t (segundos)")
+    plt.ylabel("Vout(t)")
+    plt.grid(True)
+    plt.legend(loc="upper right")
+    plt.show()
+
+
+
+
+def graficar_circuito_RL():
+    t = np.linspace(0, 0.0003, 1000)
+    w = 500 / 0.004
+    K = -7
+    Vout = (1.12e-4 * w / np.sqrt(1 + 6.4e-11 * w**2)) * np.sin(w * t + np.arctan(125000 / w)) + K * np.exp(-125000 * t)
+
+    plt.figure(figsize=(8, 6))
+    plt.plot(t, Vout, label='Voltaje de salida Vout(t)', color='orange')
+    plt.title("Solución de la EDO para el circuito RL")
+    plt.xlabel("t (segundos)")
+    plt.ylabel("Vout(t)")
+    plt.grid(True)
+    plt.legend(loc="upper right")
+    plt.show()
+
+
