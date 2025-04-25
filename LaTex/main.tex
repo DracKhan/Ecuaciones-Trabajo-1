@@ -8,6 +8,7 @@
 \usepackage{url}
 \usepackage{float}
 \usepackage{amssymb}
+\usepackage[spanish]{babel}
 
 \usepackage[backend=biber, style=ieee]{biblatex}
 \addbibresource{bibliografia.bib}
@@ -15,7 +16,13 @@
 
 
 \title{Trabajo 1 - Ecuaciones}
-\author{FABIO ANDRES GARCIA PEREZ}
+\author{
+  FABIO ANDRÉS GARCÍA PÉREZ \\
+  C.C. 1017924039 \\
+  \and
+  JUAN CAMILO MUÑOZ RAMIREZ \\
+  C.C. 1044530503
+}
 \date{Abril 2025}
 
 \begin{document}
@@ -320,7 +327,7 @@ Si reescribimos la expresión de la solución general como \(y(x)=\sqrt{\frac{C_
 
 Acá veremos la solución general y la solución particular con el problema de valor inicial, usando el paquete sympy de python, comparemos estas soluciones inmediatas con las realizadas paso a paso durante la solución de la EDO, el código fuente de esta solución se puede consultar en la bibliografía como \cite{codigo_mapaPendiente}.
 
-Al ejecutar el archivo .py, obtenemos en la consola dos funciones diferentes\(y(x)=g(x)\), que hacen referencia a la solución general, y otra función que hace referencia a la solución particular, las cuales serian:
+Al ejecutar el archivo .py, obtenemos en la consola dos funciones diferentes \(y(x)=g(x)\), que hacen referencia a la solución general, y otra función que hace referencia a la solución particular, las cuales serian:
 
 Para la solución general:
 \begin{align*}
@@ -388,7 +395,7 @@ En esta ultima etapa se tendrá la gráfica la solución particular, adicional a
     \label{fig:sol_particular}
 \end{figure}
 
-En la figura 3 podemos ver la gráfica de nuestra solución particular, pero, ¿cómo funciona esto? Es más fácil de lo que parece, la gráfica que estamos viendo, realmente no es la gráfica "\(y(0)=14\)", es la gráfica con la constante arbitraria \(C_5=387\), en la que usando esta constante en nuestra solución, donde nos queda \(y(x) = \sqrt{\frac{387\cdot e^{-\frac{4\cdot x}{7}}+5}{2}}\), se pondrán varios puntos en la gráfica, para esto se usan las líneas \(\text{x\_vals = np.linspace(\(-0.5, 15, 400\))}\) y \(\text{y\_vals = f(x\_vals)}\), donde esos valores "\((-0.5,15,400)\)" significa el rango de valores en x, y cuantos puntos se pondrán entre ese espacio de x, separados la misma distancia, en este caso, 400 puntos entre \(-0.5\) y 15, siendo \(-0.5\) que la función comience en ese valor en x, y 15, para que termine con ese valor en x, eso mismo podemos observar en la figura 3, la posición de estos puntos en y, depende de la función, por eso no tiene un valor numérico, sino "\(\text{f(x\_vals)}\)", cada uno de estos puntos estarán conectados por una linea, de punto a punto, en orden, por ejemplo si tenemos P1,P2 y P3, ubicados en ese orden respectivamente sobre el plano, no estará conectado P1 a P3 y P2, sino P1 a P2 y P2 a P3, para poder mostrar en la gráfica una función lineal, sin cortes (a menos que esta tenga una discontinuidad), y lo más precisa posible, pues entre más valores tome, mejor se verá.
+En la figura 3 podemos ver la gráfica de nuestra solución particular, pero, ¿cómo funciona esto? Es más fácil de lo que parece, la gráfica que estamos viendo, realmente no es la gráfica "\(y(0)=14\)", es la gráfica con la constante arbitraria \(C_5=387\), en la que usando esta constante en nuestra solución, donde nos queda \(y(x) = \sqrt{\frac{387\cdot e^{-\frac{4\cdot x}{7}}+5}{2}}\), se pondrán varios puntos en la gráfica, para esto se usan las líneas \(\text{x\_vals = np.linspace(\(-0.5, 15, 400\))}\) y \(\text{y\_vals = f(x\_vals)}\), donde esos valores "\((-0.5,15,400)\)" significa el rango de valores en x, y cuantos puntos se pondrán entre ese espacio de x, separados la misma distancia, en este caso, 400 puntos entre \(-0.5\) y 15, siendo \(-0.5\) que la función comience en ese valor en x, y 15, para que termine con ese valor en x, eso mismo podemos observar en la figura 3, la posición de estos puntos en y, depende de la función, por eso no tiene un valor numérico, sino "\(\text{f(x\_vals)}\)", cada uno de estos puntos estarán conectados por una linea, de punto a punto, en orden, por ejemplo si tenemos P1, P2 y P3, ubicados en ese orden respectivamente sobre el plano, no estará conectado P1 a P3 y P2, sino P1 a P2 y P2 a P3, para poder mostrar en la gráfica una función lineal, sin cortes (a menos que esta tenga una discontinuidad), y lo más precisa posible, pues entre más valores tome, mejor se verá.
 
 \begin{figure}[H]
     \centering
@@ -410,6 +417,441 @@ Volviendo a la figura 3, notamos que esta entre más aumenta su valor en \(x\), 
 Por ultimo podemos ver en la figura 5 varias soluciones con diferentes valores para \(C_5\), los cuales están sobrepuestos a la gráfica de pendientes, pero en este caso, con diferente rango de valores (lo que no cambia en absoluto los puntos de estabilización), todas se estabilizan en el punto correspondiente, ya sea \(\sqrt{\frac{5}{2}}\) o \(-\sqrt{\frac{5}{2}}\), pero, ¿por qué están repetidos los valores de \(C_5\) y estos me dan diferentes funciones? 
 Esto se da gracias a que en nuestra solución general tenemos \(\pm\sqrt{2}\frac{\sqrt{C_5\cdot e^{-\frac{4\cdot x}{7}}+5}}{2}\), así que debe haber una solución positiva y negativa, podemos escoger una en especifico según el problema de valor inicial, por ejemplo en este caso fue \(y(0)=14\), al despejar tenemos el valor de \(C_5=387\), que nos daría dos posibles opciones, una negativa y otra positiva, pero como tenemos \(y(0)=14\), significa que la función pasara por el punto \((x,y)=(0,14)\), y para que esto se cumpla, debe ser la raíz positiva, como se observa en la figura 3.
 
-\printbibliography
+\section{Segunda parte: Circuito RC y RL como filtro}
+En esta segunda parte del documento se abordará la aplicación del filtrado de señales mediante el análisis de circuitos eléctricos básicos: un circuito RC y un circuito RL. El objetivo es identificar las expresiones diferenciales que describen el comportamiento dinámico de cada circuito ante una señal de entrada, considerando las leyes fundamentales del análisis de circuitos.
 
+Para ello, se utilizarán los siguientes valores para los componentes: una resistencia de \( R = 500\,\Omega \), una capacitancia de \( C = 0{,}5\,\text{mF} \) y una inductancia de \( L = 4\,\text{mH} \).
+\subsection{Solución de las ecuaciones diferenciales para los circuitos RC y RL}
+Para el desarrollo de estas soluciones, además de los valores dados inicialmente, asumiremos que \(V_{in}=Asen(wt)\). Dónde \(A\) y \(w\) son constantes.
+\subsubsection{Solución para el circuito RC}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{CirtoRC.png}
+    \caption{Circuito RC.}
+    \label{fig:CirctoRC}
+\end{figure}
+En la figura 6 podemos observar un circuito RC con su respectiva ecuación diferencial, los valores \(R,\,V_{in}\) y \(C\) ya son valores conocidos, así que procederemos con su solución.
+\[
+    RC\frac{dV_{out}}{dt}+V_{out}=Asen(wt)
+\]
+Llevando a la forma estándar de EDO lineal.
+\[
+    \frac{dV_{out}}{dt}+\frac{V_{out}}{RC}=\frac{A}{RC}sen(wt)
+\]
+Se halla factor integrante.
+\[
+    u=e^{\int \frac{1}{RC}dt}=e^{\frac{t}{RC}} 
+\]
+Se reemplaza en la ecuación-
+\[
+    e^{\frac{t}{RC}}\frac{dV_{out}}{dt}+e^{\frac{t}{RC}}\frac{V_{out}}{RC}=\frac{A}{RC}e^{\frac{t}{RC}}sen(wt)
+\]
+La expresión de la derivada del producto de dos funciones se formula como:
+\begin{equation*}
+    \frac{d[U \cdot V]}{dt} = U \cdot \frac{dV}{dt} + V \cdot \frac{dU}{dt}.
+\end{equation*}
+
+Aplicando esta identidad, se obtiene:
+\begin{equation*}
+    e^{\frac{t}{RC}} \cdot \frac{dV_{out}}{dt} + \frac{e^{\frac{t}{RC}} \cdot V_{out}}{RC} = \frac{d}{dt}\left[V_{out} \cdot e^{\frac{t}{RC}}\right].
+\end{equation*}
+
+Dado que la derivada y la integral son operaciones inversas, al aplicar:
+\begin{equation*}
+    \int \frac{d}{dt}\left[V_{out} \cdot e^{\frac{t}{RC}}\right]\,dt,
+\end{equation*}
+se recupera directamente la expresión:
+\begin{equation*}
+    V_{out} \cdot e^{\frac{t}{RC}}.
+\end{equation*}
+Así que expresando la integral tenemos:
+\begin{align*}
+    V_{out}\cdot e^{\frac{t}{RC}}&=\int \frac{A}{RC}e^{\frac{t}{RC}}sen(wt)dt \\
+    \frac{RC\cdot V_{out}e^{\frac{t}{RC}}}{A}&=\int e^{\frac{t}{RC}}sen(wt)dt
+\end{align*}
+Se empieza a resolver la integral por sustitución por partes. Se halla que es una integral cíclica, y se resuelve como tal.
+\begin{align*}
+    &\int sen(wt)e^{\frac{t}{RC}}dt \\
+    u&=sen(wt)
+    &dv=e^{\frac{t}{RC}}dt\\
+    du&=wcos(wt)dt
+    &v=RCe^{\frac{t}{RC}}
+\end{align*}
+Reemplazando
+\[
+    \int sen(wt)e^{\frac{t}{RC}}dt=sen(wt)RCe^{\frac{t}{RC}}-\int RCe^{\frac{t}{RC}}wcos(wt)dt
+\]
+Asigno a I.
+\[
+    I=\int RCwe^{\frac{t}{RC}}cos(wt)dt
+\]
+Aplico nuevamente sustitución por partes.
+\begin{align*}
+    u&=wcos(wt)
+    &dv=RCe^{\frac{t}{RC}}dt\\
+    du&=-w^2sen(wt)dt
+    &v=R^2C^2e^{\frac{t}{RC}}
+\end{align*}
+Reemplazo.
+\begin{align*}
+    I&=wcos(wt)R^2C^2e^{\frac{t}{RC}}+\int R^2C^2e^{\frac{t}{RC}}w^2sen(wt)dt \\
+    I&=wR^2C^2cos(wt)e^{\frac{t}{RC}}+R^2C^2w^2\int e^{\frac{t}{RC}}sen(wt)dt \\
+    \int sen(wt)e^{\frac{t}{RC}}dt&=RCsen(wt)e^{\frac{t}{RC}}-wR^2C^2cos(wt)e^{\frac{t}{RC}}-R^2C^2w^2\int e^{\frac{t}{RC}}sen(wt)dt
+\end{align*}
+Paso las expresiones con seno para el lado izquierdo de la ecuación, y se saca factor común. Además, se agrega la constante de integración.
+\[
+    (1+R^2C^2w^2)\int sen(wt)e^{\frac{t}{RC}}dt=RCsen(wt)e^{\frac{t}{RC}}-wR^2C^2cos(wt)e^{\frac{t}{RC}}+K
+\]
+se agrega la constante de integración (\(K\)) ya que se despeja una integral cíclica.
+\[
+    \int sen(wt)e^{\frac{t}{RC}}dt=\frac{RCsen(wt)e^{\frac{t}{RC}}-wR^2C^2cos(wt)e^{\frac{t}{RC}}}{(1+R^2C^2w^2)}+K
+\]
+Despejo finalmente la ecuación diferencial inicial.
+\[
+    \frac{RC\cdot V_{out}e^{\frac{t}{RC}}}{A}=\frac{RCsen(wt)e^{\frac{t}{RC}}-wR^2C^2cos(wt)e^{\frac{t}{RC}}}{(1+R^2C^2w^2)}+K
+\]
+Multiplicando toda la igualdad por \(\frac{A}{RC\cdot e^{\frac{t}{RC}}}\), y expresando \(\frac{1}{e^{\frac{t}{RC}}}\) como \(e^{-\frac{t}{RC}}\)
+\[
+    V_{out}=\frac{Asen(wt)-AwRCcos(wt)}{(1+R^2C^2w^2)}+ke^{-\frac{t}{RC}}
+\]
+Reemplazando los valores del problema \(A=14,\,R=500,\,C=0.0005\), nos da como solución al circuito RC:
+\[
+    V_{out}=\frac{14sen(wt)-3.5wcos(wt)}{1+0.0625w^2}+ke^{-\frac{t}{0.25}}
+\]
+Pero si multiplicamos \(\frac{4}{4}\) por \(\frac{t}{0.25}\) nos da \(4t\), quedando finalmente:
+\[
+    V_{out}=\frac{14sen(wt)-3.5wcos(wt)}{1+0.0625w^2}+ke^{-4t}
+\]
+\subsubsection{Solución para el circuito RL}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{CirtoRL.png}
+    \caption{Circuito RL.}
+    \label{fig:CirctoRL}
+\end{figure}
+Como se observa en la figura 7, para la solución de este circuito, no se usa \(V_{in}\) directamente, realmente necesitamos \(\frac{dV_{in}}{dt}\), así que realizamos la derivada correspondiente para hallarlo.
+\begin{align*}
+    V_{in}&=Asen(wt) \\
+    \frac{dV_{in}}{dt}&=Awcos(wt)
+\end{align*}
+Despejando la ecuación resultante en la forma estándar de EDO lineal, y expresando la integral tenemos:
+\begin{align*}
+    L\frac{dV_{out}}{dt}+RV_{out}&=LAwcos(wt) \\
+    \frac{dV_{out}}{dt}+\frac{R}{L}V_{out}&=Awcos(wt) \\
+    u=e^{\int \frac{R}{L}dt}=e^{\frac{Rt}{L}} \\
+    e^{\frac{Rt}{L}}V_{out}&=\int Awcos(wt)e^{\frac{Rt}{L}}dt
+\end{align*}
+Luego se procede a resolver la integral. También se aplica sustitución por partes, y como en el circuito RC, también es una integral cíclica, se resuelve de manera similar.
+\begin{align*}
+    &\frac{e^{\frac{Rt}{L}}V_{out}}{Aw}=\int cos(wt)e^{\frac{Rt}{L}}dt \\
+    u&=cos(wt)
+    &dv&=e^{\frac{Rt}{L}}dt\\
+    du&=-wsen(wt)dt
+    &v&=\frac{L}{R}e^{\frac{Rt}{L}}
+\end{align*}
+Reemplazando.
+\begin{align*}
+    &\int cos(wt)e^{\frac{Rt}{L}}dt=cos(wt)\frac{L}{R}e^{\frac{Rt}{L}}+\int \frac{L}{R}e^{\frac{Rt}{L}}wsen(wt)dt \\
+    u&=wsen(wt)
+    &dv&=\frac{L}{R}e^{\frac{Rt}{L}}dt\\
+    du&=w^2cos(wt)dt
+    &v&=\frac{L^2}{R^2}e^{\frac{Rt}{L}}
+\end{align*}
+Por lo que al reemplazar una vez más y terminando de resolver la integral con la lógica usada en todo el desarrollo de este documento, tendríamos: 
+\begin{align*}
+    &\int cos(wt)e^{\frac{Rt}{L}}dt=cos(wt)\frac{L}{R}e^{\frac{Rt}{L}}+w\frac{L^2}{R^2}sen(wt)e^{\frac{Rt}{L}}-\int\frac{L^2}{R^2}e^{\frac{Rt}{L}}w^2cos(wt)dt \\
+    &\int cos(wt)e^{\frac{Rt}{L}}dt\cdot [1+\frac{L^2}{R^2}w^2]=cos(wt)\frac{L}{R}e^{\frac{Rt}{L}}+w\frac{L^2}{R^2}sen(wt)e^{\frac{Rt}{L}} \\
+    &\frac{e^{\frac{Rt}{L}}V_{out}}{Aw}=\frac{1}{1+\frac{L^2}{R^2}w^2}[cos(wt)\frac{L}{R}e^{\frac{Rt}{L}}+w\frac{L^2}{R^2}sen(wt)e^{\frac{Rt}{L}}]+K \\
+    &V_{out}=\frac{Aw}{1+(\frac{L}{R}w)^2}[\frac{L}{R}cos(wt)+w\frac{L^2}{R^2}sen(wt)]+Ke^{-\frac{Rt}{L}}
+\end{align*}
+Reemplazando los valores del problema \(A=14,\,R=500,\,L=0.004\), nos da como solución al circuito RL:
+\[
+    V_{out}=\frac{14w}{1+(8 \times 10^{-6}w)^2}[8 \times 10^{-6}cos(wt)+6.4 \times 10^{-11}wsen(wt)]+Ke^{-125.000t}
+\]
+\subsection{Análisis de la solución: componentes transitoria y estacionaria}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Sp22.png}
+    \caption{Transformación de la respuesta estacionaria mediante identidad trigonométrica.}
+    \label{fig:Sp22}
+\end{figure}
+En la figura 8, se presentan las expresiones utilizadas para transformar la combinación de una señal seno y una señal coseno (de igual frecuencia) en una única señal senoidal. Esta transformación permite obtener una representación más compacta de la respuesta estacionaria, facilitando la interpretación de la amplitud total y del desfase de la señal resultante.
+
+Dicha conversión se basa en una identidad trigonométrica, que también se muestra en la figura, y que permite expresar la solución estacionaria en función de una sola señal seno con fase desplazada. Además, se incluyen las condiciones para determinar correctamente el ángulo de fase \(\alpha\), en función del signo de los coeficientes.
+
+Para identificar la parte transitoria y la estacionaria, observamos la solución obtenida para cada circuito, la parte transitoria dependerá de una exponencial decreciente, mientras que la parte estacionaria  permanece constante en forma y frecuencia en el tiempo.
+\subsubsection{Identificación para el circuito RC}
+En el circuito RC, con la siguiente solución:
+\[
+    V_{out}=\frac{Asen(wt)-AwRCcos(wt)}{(1+R^2C^2w^2)}+ke^{-\frac{t}{RC}}
+\]
+La parte transitoria seria \(ke^{-\frac{t}{RC}}\) y la parte estacionaria \(\frac{Asen(wt)-AwRCcos(wt)}{(1+R^2C^2w^2)}\).
+
+Realizando la conversión con la identidad trigonométrica, expresando la solución como \(V_{out}=\frac{A}{1+(RCw)^2}[sen(wt)-wRCcos(wt)]+ke^{-\frac{t}{RC}}\) y representando el \(A\) de la figura 8 como \(B\) para evitar confusiones entre términos, además, como la constante que acompaña al seno es mayor a 0, tendríamos:
+
+\begin{align*}
+    C_1&=1
+    &B&=\sqrt{(1)^2+(-wRC)^2}
+    &\alpha&=tan^{-1}(\frac{-wRC}{1})\\
+    C_2&=-wRC
+    &B&=\sqrt{1+(wRC)^2}
+    &\alpha&=tan^{-1}(-wRC)
+\end{align*}
+Reemplazando.
+\[
+    V_{out}=\frac{A}{1+(RCw)^2}\sqrt{1+(wRC)^2}\cdot[sen(wt+tan^{-1}(-wRC))]+ke^{-\frac{t}{RC}}
+\]
+Simplificando.
+\[
+    V_{out}=\frac{A}{\sqrt{1+(wRC)^2}}\cdot sen(wt-tan^{-1}(wRC))+ke^{-\frac{t}{RC}}
+\]
+Reemplazando los datos.
+\[
+    V_{out}=\frac{14}{\sqrt{1+0.0625w^2}}\cdot sen(wt-tan^{-1}(0.25w))+ke^{-4t}
+\]
+Donde la parte estacionaria seria \(\frac{14}{\sqrt{1+0.0625w^2}}\cdot sen(wt-tan^{-1}(0.25w))\) y la parte transitoria \(ke^{-4t}\).
+\subsubsection{Identificación para el circuito RL}
+En el circuito RL con la siguiente solución:
+\[
+    V_{out}=\frac{Aw}{1+(\frac{L}{R}w)^2}[\frac{L}{R}cos(wt)+w\frac{L^2}{R^2}sen(wt)]+Ke^{-\frac{Rt}{L}}
+\]
+Sacando factor común \(\frac{L}{R}\) del lado derecho de la igualdad.
+\[
+        V_{out}=\frac{ALw}{R[1+(\frac{L}{R}w)^2]}[cos(wt)+w\frac{L}{R}sen(wt)]+Ke^{-\frac{Rt}{L}}
+\]
+Aplicando la identidad trigonométrica, de nuevo con \(B\) en lugar de \(A\)
+\begin{align*}
+    C_1&=w\frac{L}{R}
+    &B&=\sqrt{(w\frac{L}{R})^2+(1)^2}
+    &\alpha&=tan^{-1}(\frac{1}{\frac{wL}{R}})\\
+    C_2&=1
+    &B&=\sqrt{1+(w\frac{L}{R})^2}
+    &\alpha&=tan^{-1}(\frac{R}{wL})
+\end{align*}
+Reemplazando.
+\begin{align*}
+    V_{out}&=\frac{ALw}{R[1+(\frac{L}{R}w)^2]}\sqrt{1+(w\frac{L}{R})^2}\cdot [sen(wt+tan^{-1}(\frac{R}{wL}))]+Ke^{-\frac{Rt}{L}} \\
+    V_{out}&=\frac{ALw}{R\sqrt{1+(w\frac{L}{R})^2}}\cdot [sen(wt+tan^{-1}(\frac{R}{wL}))]+Ke^{-\frac{Rt}{L}}
+\end{align*}
+Reemplazando los datos.
+\[
+    V_{out}=\frac{1.12\times 10^{-4}w}{\sqrt{1+6.4\times 10^{-11}w^2}}\cdot sen(wt+tan^{-1}(\frac{125000}{w}))+Ke^{-125000t}
+\]
+Donde la parte estacionaria seria \(\frac{1.12\times 10^{-4}w}{\sqrt{1+6.4\times 10^{-11}w^2}}\cdot sen(wt+tan^{-1}(\frac{125000}{w}))\) y la parte transitoria \(Ke^{-125000t}\).
+\subsection{Gráfica de las soluciones}
+
+En esta sección se presentan las gráficas de las soluciones obtenidas, generadas mediante un código en \textit{Python}, el cual puede consultarse en la bibliografía como referencia [1]. Para la simulación, se han asumido los valores \( \omega = \frac{1}{RC} \) para el circuito RC y \( \omega = \frac{R}{L} \) para el circuito RL. Ya que no tenemos un valor inicial, podemos tomar cualquiera de su familia de soluciones, para tener una gráfica arbitraria, que nos muestra el comportamiento, pero varía sus valores segun K, para esto supondremos que \(V_{out}(t=0)=0\).
+\subsubsection{Gráfica para RC}
+ Al reemplazar \(w\) y resolver con ese valor inicial, obtenemos:
+\[
+    V_{out}=\frac{A}{\sqrt{1+(1)^2}}\cdot sen(\frac{t}{RC}-tan^{-1}(1))+ke^{-\frac{t}{RC}}
+\]
+Que al sustituir los datos y operar nos queda:
+\[
+    0=7\sqrt{2}\cdot sen(4(0)-\frac{\pi}{4})+ke^{-0}
+\]
+Por lo que finalmente queda:
+\[
+    k=7
+\]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Grafica_VoutRC.png}
+    \caption{Comportamiento del circuito RC.}
+    \label{fig:cRC}
+\end{figure}
+En la figura 9 podemos ver el comportamiento que tiene la solución con k=7.
+\subsubsection{Gráfica para RL}
+Al realizar el mismo procedimiento de RC para RL, obtenemos como resultado un k=-7, que, al graficar esto obtenemos la siguiente figura:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Grafica_VoutRL.png}
+    \caption{Comportamiento del circuito RL.}
+    \label{fig:cRL}
+\end{figure}
+\subsection{Simulación en Open Modelica}
+El código utilizado para ambas simulaciones, se encuentra como [1] en la bibliografía.
+\subsubsection{Para el circuito RC}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMRC.jpg}
+    \caption{Comportamiento del circuito RC con OM.}
+    \label{fig:cOMRC}
+\end{figure}
+\subsubsection{Para el circuito RL}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMRL.jpg}
+    \caption{Comportamiento del circuito RL con OM.}
+    \label{fig:cOMRL}
+\end{figure}
+En ambas gráficas podemos ver como coincide con las obtenidas al realizar el proceso paso a paso, y realizar la gráfica de esa solución, comprobando de esta manera un buen desarrollo de la ecuación empleada, pues estas gráficas se sobreponen una con la otra.
+\subsection{Análisis de amplitudes}
+Antes de realizar el análisis de la parte estacionaria, me gustaría agregar un análisis en la parte transitoria bajo el criterio de estabilización con respecto a \(5\tau
+\)
+\subsubsection{Para el circuito RC}
+\begin{align*}
+    &ke^{-\frac{t}{RC}} \\
+    &e^{-\frac{t}{RC}}=e^{\frac{-t}{\tau}}\\
+    &e^{-4t}=e^{\frac{-t}{\tau}} \\
+    &-4t=\frac{-t}{\tau} \\
+    &4=\frac{1}{\tau} \\
+    &\tau=\frac{1}{4}
+\end{align*}
+así que \(5\tau=\frac{5}{4}=1.25seg\), por lo que se halla que en este circuito, el término transitorio tiende a desaparecer cuando se supera los 1.25 segundos.
+
+Ahora, para realizar la parte estacionaria de la ecuación, debemos extraer la amplitud de la solución obtenida anteriormente: 
+\[
+    V_{out}=\frac{14}{\sqrt{1+0.0625w^2}}\cdot sen(wt-tan^{-1}(0.25w))+ke^{-4t}
+\]
+donde la amplitud seria \(\frac{14}{\sqrt{1+0.0625w^2}}\)
+Para esto se realiza el análisis para las frecuencias bajas, es decir, cuando \(w\) tiende a cero, para ello hacemos uso del límite.
+\[
+    \lim_{w \to 0} \frac{14}{\sqrt{1+0.0625w^2}}=\frac{14}{\sqrt{1+0}}=14
+\]
+De acá se desprende que el circuito RC a frecuencias bajas, tiende a su máxima amplitud.
+
+Luego hacemos el análisis para frecuencias altas con ayuda del límite:
+\[
+    \lim_{w \to \infty} \frac{14}{\sqrt{1+0.0625w^2}}=\frac{14}{\sqrt{1+\infty}}=\frac{14}{\infty}=0
+\]
+Se concluye del resultado anterior que el circuito RC cuando tiende a frecuencias muy altas, se comporta bloqueándolas o anulando su amplitud.
+
+De los dos resultados obtenidos de los límites, se puede decir que el circuito RC como filtro, se comporta como pasa bajos, las frecuencias bajas pasan con mayor amplitud, y las frecuencias altas tiende a anularlas o atenuarlas disminuyendo la amplitud en la salida.
+\subsubsection{Para el circuito RL}
+Acá también haremos uso de \(5\tau\), así que procediendo con el mismo desarrollo del circuito anterior:
+\begin{align*}
+    &e^{-125000t}=e^{\frac{-t}{\tau}} \\
+    &125000t=\frac{t}{\tau} \\
+    &\tau=8 \times10^{-6}
+\end{align*}
+Entonces \(5\tau=4\times10^{-5}seg\) por lo que en este caso, tiende a desaparecer o a ser cero, cuando el tiempo supera los \(4\times10^{-5}\) segundos.
+
+Para este circuito tenemos lo siguiente.
+\[
+    V_{out}=\frac{ALw}{R\sqrt{1+(w\frac{L}{R})^2}}\cdot [sen(wt+tan^{-1}(\frac{R}{wL}))]+Ke^{-\frac{Rt}{L}}
+\]
+Donde la amplitud sería \(\frac{ALw}{R\sqrt{1+(w\frac{L}{R})^2}}\), al aplicar los limites anteriores a este tendríamos:
+\begin{align*}
+    \lim_{w \to 0}\frac{ALw}{R\sqrt{1+(\frac{wL}{R})^2}}&=\frac{0}{R\sqrt{1}}=0 \\
+    \lim_{w \to \infty}\frac{ALw}{R\sqrt{1+(\frac{wL}{R})^2}}&= \lim_{w \to \infty}\frac{AL}{R\sqrt{\frac{1}{w^2}+\frac{L^2}{R^2}}} \\
+    \frac{AL}{R\sqrt{0+\frac{L^2}{R^2}}}&=\frac{AL}{R\cdot \frac{L}{R}}=A \\
+    A&=14
+\end{align*}
+El circuito RL actúa como un filtro pasaaltos, ya que el voltaje de salida tiende a $0$ cuando $w \to 0$, y a $14$ cuando $w \to \infty$. Esto indica que atenúa las señales de baja frecuencia y permite el paso de señales de alta frecuencia con ganancia máxima.
+\subsection{Simulaciones en OpenModelica para los circuitos}
+
+Para verificar el análisis anterior, se realizaron simulaciones en OpenModelica variando el valor de $\omega$ en seis casos diferentes para dos configuraciones: circuito RC y circuito RL. En ambos casos, se analizaron frecuencias menores y mayores al valor base. Los resultados se exportaron a Python para su visualización.
+
+\subsubsection{Análisis del circuito RC}
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw1RC.jpg}
+    \caption{Comparación entre la salida con $\omega_1$ (azul) y $\omega_6$ (naranja) para el circuito RC.}
+    \label{fig:OMRC1y6}
+\end{figure}
+En la figura 13, se sobreponen únicamente las gráficas correspondientes a la primera y la última simulación del circuito RC. Acá se puede ver el efecto de filtro pasa bajos en las gráficas. La señal con mayor frecuencia tiene menor amplitud que la señal azul. Se rectifica viendo las siguientes gráficas.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw2RC.jpg}
+    \caption{Respuesta del sistema RC para $\omega_2$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw3RC.jpg}
+    \caption{Respuesta del sistema RC para $\omega_3$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw4RC.jpg}
+    \caption{Respuesta del sistema RC para $\omega_4$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw5RC.jpg}
+    \caption{Respuesta del sistema RC para $\omega_5$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw6RC.jpg}
+    \caption{Respuesta del sistema RC para $\omega_6$.}
+\end{figure}
+
+\subsubsection{Análisis del circuito RL}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw1RL.jpg}
+    \caption{Comparación entre la salida con $\omega_1$ (azul) y $\omega_6$ (naranja) para el circuito RL.}
+    \label{fig:OMRL1y6}
+\end{figure}
+En la figura 19, se presenta la comparación entre la primera y la última simulación del circuito RL. En la anterior gráfica se ve el efecto de filtro pasa altos. Se confirma con las siguientes gráficas.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw2RL.jpg}
+    \caption{Respuesta del sistema RL para $\omega_2$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw3RL.jpg}
+    \caption{Respuesta del sistema RL para $\omega_3$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw4RL.jpg}
+    \caption{Respuesta del sistema RL para $\omega_4$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw5RL.jpg}
+    \caption{Respuesta del sistema RL para $\omega_5$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{OMw6RL.jpg}
+    \caption{Respuesta del sistema RL para $\omega_6$.}
+\end{figure}
+\subsection{Gráfica de amplitud en función de la frecuencia angular en Python}
+
+Para hacer las gráficas de amplitud en Python decidí no tomar manualmente los resultados de la simulación en OpenModelica, sino graficar la función de la amplitud variando $\omega$ (el código se encuentra en las referencias como [1]). Estas gráficas coinciden con el análisis anterior, concuerdan en la disminución o aumento de la amplitud según el caso, y confirman y demuestran de manera más concisa que el circuito RC es pasa bajos y el circuito RL es pasa altos.
+
+A continuación, se presentan las gráficas generadas en Python para ambos casos:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{AmSRC.jpg}
+    \caption{Amplitud en estado estacionario del circuito RC en función de $\omega$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{AmSRL.jpg}
+    \caption{Amplitud en estado estacionario del circuito RL en función de $\omega$.}
+\end{figure}
+
+El circuito RC tiene su máximo en 14, y tiende a cero cuando $\omega$ tiende a infinito. En contraste, el circuito RL tiene su mínimo en cero, y cuando $\omega$ tiende a infinito, el circuito se estabiliza en una amplitud de 14.
+\section{Conclusiones}
+
+\begin{itemize}
+    \item El circuito RC y el circuito RL pueden configurarse como filtros eléctricos que responden de forma diferente según la frecuencia de entrada.
+    
+    \item A partir del análisis de las soluciones de las ecuaciones diferenciales, se concluye que el circuito RC se comporta como un filtro pasa bajos, es decir, atenúa las señales de alta frecuencia. Además, para una frecuencia dada, la señal de salida alcanza el estado estacionario luego de un tiempo transitorio, en el cual la señal tiende a estabilizarse.
+    
+    \item En el caso del circuito RL, se identifica un comportamiento de filtro pasa altos. La señal de salida también alcanza un estado estacionario después de un corto tiempo transitorio, en el cual se eliminan los componentes de baja frecuencia.
+    
+    \item En ambos circuitos, se observa que la amplitud de la señal de salida en estado estacionario nunca supera la amplitud máxima de la señal de entrada. Esto refuerza la función de los filtros como sistemas que permiten o atenúan el paso de ciertas frecuencias sin amplificar la señal original.
+\end{itemize}
+
+\printbibliography
 \end{document}
